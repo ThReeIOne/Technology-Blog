@@ -1,4 +1,31 @@
 -- ----------------------------
+-- Table structure for admins
+-- ----------------------------
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE `admin`
+(
+    `id`            int         NOT NULL AUTO_INCREMENT COMMENT 'ID',
+    `username`      varchar(50) NOT NULL COMMENT '用户名',
+    `password`      varchar(64) NOT NULL COMMENT '密码',
+    `name`          varchar(32) COMMENT '名字',
+    `phone`         varchar(11) COMMENT '电话号码',
+    `status`        tinyint(1) COMMENT '状态 0锁定 1有效',
+    `avatar`        varchar(32) COMMENT '头像',
+    `description`   varchar(128) DEFAULT '',
+    `created_at`    datetime     DEFAULT CURRENT_TIMESTAMP,
+    `updated_at`    datetime     DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `deleted_at`    datetime     DEFAULT NULL,
+    `last_login_at` datetime     DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `username` (`username`) USING BTREE,
+    UNIQUE KEY `phone` (`phone`) USING BTREE,
+    UNIQUE KEY `name` (`name`) USING BTREE
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_unicode_ci
+  ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
 -- Table structure for admins_role
 -- ----------------------------
 DROP TABLE IF EXISTS `admin_role`;
